@@ -15,7 +15,10 @@ function listOfFiles(currentDirectory) {
       }
 
       if(file.isFile()){
-        console.log(file.name);
+        fs.stat(`${currentDirectory}/${file.name}`, (err, stat) => {
+          let [name, ext] = file.name.split('.');
+          console.log(`${name !== '' ? name : 'No name'} - `,`${ext !== undefined ? ext : 'No ext'}`,` - ${(stat.size / 1000)} kb`);
+        });
       }
     }
   });
