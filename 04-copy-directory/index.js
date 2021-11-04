@@ -3,9 +3,11 @@ const path = require('path');
 const pathToDirectory = path.join(__dirname, 'files');
 
 function copyFiles(currentDirectory) {
+
   fs.mkdir(currentDirectory + '-copy', {recursive: true},(err) => {
     if(err) throw err;
   });
+
   fs.readdir(currentDirectory, {withFileTypes : true}, (err, files) => {
 
     if(err) throw err;
@@ -16,7 +18,9 @@ function copyFiles(currentDirectory) {
         fs.createReadStream(`${currentDirectory}/${file.name}`)
           .pipe(fs.createWriteStream(`${currentDirectory}-copy/${file.name}`));
       }
+
     }
+
   });
 }
 
