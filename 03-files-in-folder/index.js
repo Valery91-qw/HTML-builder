@@ -9,11 +9,6 @@ function listOfFiles(currentDirectory) {
     if(err) throw err;
 
     for (let file of files){
-
-      if(file.isDirectory()) {
-        listOfFiles(path.join(currentDirectory,  file.name));
-      }
-
       if(file.isFile()){
         fs.stat(`${currentDirectory}/${file.name}`, (err, stat) => {
           let [name, ext] = file.name.split('.');
